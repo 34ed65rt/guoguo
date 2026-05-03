@@ -3,43 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网站已停止供应</title>
+    <title>果果 & 何果果 专属网站</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            width: 100vw;
-            height: 100vh;
-            background-color: #f5f5f5;
-            /* 完全居中 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "微软雅黑", sans-serif;
+            background: linear-gradient(135deg, #f0f8ff, #fef4f8, #f8f0fb);
+            min-height: 100vh;
+            font-family: "幼圆", "微软雅黑", "Comic Sans MS", sans-serif;
+            overflow-x: hidden;
         }
-        .box {
+
+        .top-title {
             text-align: center;
-            color: #666666;
+            padding: 35px 10px;
+            font-size: 42px;
+            font-weight: bold;
+            color: #8b72b6;
+            text-shadow: 0 0 8px #e2d5f2;
+            animation: swing 3s ease-in-out infinite alternate;
         }
-        .tip {
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: 2px;
+
+        @keyframes swing {
+            0% { transform: rotate(-1.5deg); }
+            100% { transform: rotate(1.5deg); }
         }
-        .sub {
-            font-size: 16px;
-            margin-top: 20px;
-            color: #999;
+
+        .icon {
+            color: #b8a0d8;
+        }
+
+        .card {
+            width: 92%;
+            max-width: 600px;
+            margin: 28px auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            padding: 26px;
+            box-shadow: 0 5px 15px #e9e0f5;
+            border: 2px solid #e4d8f0;
+            animation: cardSoft 5s ease-in-out infinite;
+        }
+
+        @keyframes cardSoft {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 16px;
+            color: #7a62a3;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .count-time {
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #9478c2;
+            letter-spacing: 3px;
+        }
+
+        .text-content {
+            line-height: 2.1;
+            font-size: 17px;
+            text-align: center;
+            color: #8870a8;
+        }
+
+        .float-deco {
+            position: fixed;
+            z-index: -1;
+            color: #d4c4e8;
+            font-size: 20px;
+            animation: floatSoft 9s ease-in-out infinite;
+        }
+
+        @keyframes floatSoft {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+            50% { transform: translateY(-20px) rotate(12deg); opacity: 0.8; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 45px 0;
+            font-size: 15px;
+            color: #a894c4;
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <div class="tip">网站已停止供应</div>
-        <div class="sub">感谢您曾经的访问</div>
+    <div class="float-deco" style="top:15%;left:8%;">✿</div>
+    <div class="float-deco" style="top:40%;right:10%;animation-delay:1.5s;">❀</div>
+    <div class="float-deco" style="top:70%;left:6%;animation-delay:2.5s;">✿</div>
+    <div class="float-deco" style="top:88%;right:8%;animation-delay:3.5s;">❀</div>
+
+    <!-- 顶部正确标题 -->
+    <div class="top-title">
+        <span class="icon">✿</span> 何果果 专属小窝 <span class="icon">✿</span>
     </div>
+
+    <!-- 何果果 生日 4月28日 -->
+    <div class="card">
+        <h2>🎂 何果果 生日倒计时</h2>
+        <div class="count-time" id="countDown">加载中...</div>
+        <p style="text-align:center;margin-top:16px;color:#9478c2;font-size:16px;">
+            生日：4月28日
+        </p >
+    </div>
+
+    <!-- 何果果喜欢：奇文 -->
+    <div class="card">
+        <h2>✨ 嗑的cp · 奇文 ✨</h2>
+        <div class="text-content">
+            追光而行 温柔相伴<br>
+            保持热爱 一路向前<br>
+            奔赴属于自己的小小星光
+        </div>
+    </div>
+
+    <!-- 正确文案：蛟龙的闺蜜，关系正常 -->
+    <div class="card">
+        <h2> ✨  何果果的少女心小窝</h2>
+        <div class="text-content">
+            生活明朗 万事顺意<br>
+            愿你和龙龙友谊长存 
+        </div>
+    </div>
+    
+    <script>
+        function updateCountDown() {
+            const now = new Date();
+            let birthDay = new Date(now.getFullYear() + "-04-28 00:00:00");
+            if (now > birthDay) {
+                birthDay = new Date((now.getFullYear() + 1) + "-04-28 00:00:00");
+            }
+
+            const diff = birthDay - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countDown").innerText = `${d}天 ${h}时 ${m}分 ${s}秒`;
+        }
+
+        updateCountDown();
+        setInterval(updateCountDown, 1000);
+    </script>
 </body>
 </html>
